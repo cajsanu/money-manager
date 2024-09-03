@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
 import { getSpendings } from "../requests/spendings";
-import { color } from "@mui/system";
 
 interface SpentProp {
   type: string;
@@ -18,6 +17,9 @@ const Spent = ({ type, amount }: SpentProp) => {
     backgroundColor: "#f5f5f5",
     color: "red",
   };
+
+  amount = Number(amount.toFixed(2))
+
   if (type === "total") {
     return (
       <div>

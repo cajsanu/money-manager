@@ -33,14 +33,21 @@ export const AddSpending = () => {
 
   const handleNewSpending = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    if (spendingType && Number(amount)) {
+    let numberAmount = null;
+    if (amount.includes(",")) {
+      numberAmount = Number(amount.replace(",", "."));
+    } else {
+      numberAmount = Number(amount);
+    }
+
+    if (spendingType && numberAmount) {
       try {
         await newSpendingMutation.mutateAsync({
-          amount: Number(amount),
+          amount: numberAmount,
           type: spendingType,
         });
         await newBalanceMutation.mutateAsync({
-          amount: Number(amount),
+          amount: numberAmount,
           action: "sub",
         });
       } catch (err) {
