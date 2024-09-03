@@ -17,6 +17,7 @@ router.put("/", async (req, res) => {
   if (body.amount && body.type) {
     try {
       spent.total += body.amount;
+      // spent[body.type] += body.amount
       switch (body.type) {
         case "clothes":
           spent.clothes += body.amount;
