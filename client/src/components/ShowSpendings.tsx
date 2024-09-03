@@ -14,8 +14,8 @@ const Spent = ({ type, amount }: SpentProp) => {
     borderRadius: "10px",
     padding: "10px 20px",
     backgroundColor: "#f5f5f5",
-    color: "orange",
     margin: 2,
+    color: "purple"
   };
 
   amount = Number(amount.toFixed(2));
@@ -23,9 +23,7 @@ const Spent = ({ type, amount }: SpentProp) => {
   if (type === "total") {
     return (
       <Box sx={boxStyle}>
-        <Typography>
-          Amout of money spent in {type}: {amount}
-        </Typography>
+        <Typography>Total spendings: {amount}€</Typography>
       </Box>
     );
   }
@@ -33,7 +31,7 @@ const Spent = ({ type, amount }: SpentProp) => {
   return (
     <Box sx={boxStyle}>
       <Typography>
-        Amout of money spent on {type}: {amount}
+        On {type}: {amount}€
       </Typography>
     </Box>
   );

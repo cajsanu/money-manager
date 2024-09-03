@@ -64,7 +64,7 @@ export const AddSpending = () => {
       <Box sx={{ minWidth: 120, margin: 10 }}>
         <FormControl
           fullWidth
-          sx={{ backgroundColor: "white", borderRadius: "10px" }}
+          sx={{ backgroundColor: "white", borderRadius: "10px", marginBottom: 2 }}
         >
           <InputLabel id="demo-simple-select-label">
             What did you spend money on?
@@ -74,6 +74,7 @@ export const AddSpending = () => {
             id="demo-simple-select"
             value={spendingType}
             label="Age"
+            required
             onChange={(e) => setSpendingType(e.target.value)}
           >
             <MenuItem value={"groceries"}>Groceries</MenuItem>

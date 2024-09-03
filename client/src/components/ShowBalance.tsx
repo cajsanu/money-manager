@@ -21,11 +21,11 @@ export const ShowBalance = () => {
           borderRadius: "10px",
           padding: "10px 20px",
           backgroundColor: "#f5f5f5",
-          color: "#ba68c8",
+          color: "purple",
         }}
       >
         {balance || balance === 0 ? (
-          <Typography>Current balance: {balance}</Typography>
+          <Typography>Current balance: {balance}€</Typography>
         ) : null}
       </Box>
     </div>
