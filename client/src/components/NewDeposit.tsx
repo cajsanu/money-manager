@@ -10,7 +10,6 @@ export const NewDeposit = () => {
   const newDepositMutation = useMutation({
     mutationFn: updateBalance,
     onSuccess: () => {
-      console.log("success");
       queryClient.invalidateQueries({ queryKey: ["balance"] });
     },
   });
