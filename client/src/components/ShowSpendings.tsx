@@ -13,6 +13,8 @@ export const ShowSpendings = () => {
     return <div>loading data...</div>;
   }
 
+  console.log(spendings)
+
   return (
     <div>
       <Box
@@ -26,7 +28,7 @@ export const ShowSpendings = () => {
         }}
       >
         {spendings || spendings === 0 ? (
-          <Typography>Total spendings: {spendings}</Typography>
+          <Typography>Total spendings: {spendings.total}</Typography>
         ) : null}
       </Box>
     </div>

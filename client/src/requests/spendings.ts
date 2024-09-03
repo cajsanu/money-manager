@@ -10,9 +10,14 @@ export const getSpendings = async () => {
   }
 };
 
-export const updateSpendings = async (amount: number) => {
+interface UpdateSpendingsProps {
+    amount: number;
+    type: string;
+  }
+
+export const updateSpendings = async ({amount, type}: UpdateSpendingsProps) => {
   try {
-    const res = await axios.put(URL, amount);
+    const res = await axios.put(URL, {amount, type});
     return res.data;
   } catch (err) {
     console.log(err);
