@@ -27,6 +27,7 @@ export const NewDeposit = () => {
   };
   return (
     <div>
+      <p>Make a new deposit:</p>
       <form onSubmit={handleNewDeposit}>
         <TextField
           label="Enter amount"
