@@ -1,7 +1,9 @@
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { updateBalance } from "../requests/balance";
+import { BaseButton } from "./Button";
+import { NumberAmount } from "../utils";
 
 export const NewDeposit = () => {
   const queryClient = useQueryClient();
@@ -15,9 +17,12 @@ export const NewDeposit = () => {
   });
   const handleNewDeposit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    if (Number(amount) && Number(amount) > 0) {
+
+    const numberdAmount = NumberAmount(amount);
+
+    if (numberdAmount && numberdAmount > 0) {
       await newDepositMutation.mutateAsync({
-        amount: Number(amount),
+        amount: numberdAmount,
         action: "add",
       });
     } else {
@@ -41,14 +46,7 @@ export const NewDeposit = () => {
             backgroundColor: "#f5f5f5",
           }}
         />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          sx={{ mt: 2 }}
-        >
-          Submit
-        </Button>
+        <BaseButton text="Confirm"/>
       </form>
     </div>
   );

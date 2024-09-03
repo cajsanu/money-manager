@@ -13,33 +13,29 @@ const Spent = ({ type, amount }: SpentProp) => {
     border: "1px solid #ccc",
     borderRadius: "10px",
     padding: "10px 20px",
-    display: "inline-block",
     backgroundColor: "#f5f5f5",
-    color: "red",
+    color: "orange",
+    margin: 2,
   };
 
-  amount = Number(amount.toFixed(2))
+  amount = Number(amount.toFixed(2));
 
   if (type === "total") {
     return (
-      <div>
       <Box sx={boxStyle}>
         <Typography>
           Amout of money spent in {type}: {amount}
         </Typography>
       </Box>
-    </div>
-    )
+    );
   }
 
   return (
-    <div>
-      <Box sx={boxStyle}>
-        <Typography>
-          Amout of money spent on {type}: {amount}
-        </Typography>
-      </Box>
-    </div>
+    <Box sx={boxStyle}>
+      <Typography>
+        Amout of money spent on {type}: {amount}
+      </Typography>
+    </Box>
   );
 };
 
@@ -48,6 +44,12 @@ interface Spendings {
 }
 
 export const ShowSpendings = () => {
+  const boxStlye = {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  };
+
   const { data: spendings, isLoading } = useQuery<Spendings>({
     queryKey: ["spendings"],
     queryFn: getSpendings,
@@ -58,12 +60,12 @@ export const ShowSpendings = () => {
   }
 
   return (
-    <div>
+    <Box sx={boxStlye}>
       {spendings
         ? Object.entries(spendings).map(([type, amount]) => (
             <Spent key={type} type={type} amount={amount} />
           ))
         : null}
-    </div>
+    </Box>
   );
 };

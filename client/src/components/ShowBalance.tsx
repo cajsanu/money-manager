@@ -20,9 +20,8 @@ export const ShowBalance = () => {
           border: "1px solid #ccc",
           borderRadius: "10px",
           padding: "10px 20px",
-          display: "inline-block",
           backgroundColor: "#f5f5f5",
-          color: "red",
+          color: "#ba68c8",
         }}
       >
         {balance || balance === 0 ? (

@@ -1,5 +1,4 @@
 import {
-  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -11,6 +10,8 @@ import { useState } from "react";
 import { updateSpendings } from "../requests/spendings";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateBalance } from "../requests/balance";
+import { BaseButton } from "./Button";
+import { NumberAmount } from "../utils";
 
 export const AddSpending = () => {
   const queryClient = useQueryClient();
@@ -33,21 +34,17 @@ export const AddSpending = () => {
 
   const handleNewSpending = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    let numberAmount = null;
-    if (amount.includes(",")) {
-      numberAmount = Number(amount.replace(",", "."));
-    } else {
-      numberAmount = Number(amount);
-    }
 
-    if (spendingType && numberAmount) {
+    const numberdAmount = NumberAmount(amount);
+
+    if (spendingType && numberdAmount) {
       try {
         await newSpendingMutation.mutateAsync({
-          amount: numberAmount,
+          amount: numberdAmount,
           type: spendingType,
         });
         await newBalanceMutation.mutateAsync({
-          amount: numberAmount,
+          amount: numberdAmount,
           action: "sub",
         });
       } catch (err) {
@@ -97,14 +94,7 @@ export const AddSpending = () => {
               backgroundColor: "#f5f5f5",
             }}
           />
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            sx={{ mt: 2 }}
-          >
-            Submit
-          </Button>
+          <BaseButton text="Add" />
         </form>
       </Box>
     </div>
