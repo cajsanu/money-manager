@@ -3,6 +3,7 @@ import { AddSpending } from "./components/AddSpending";
 import { NewDeposit } from "./components/NewDeposit";
 import { ShowBalance } from "./components/ShowBalance";
 import { ShowSpendings } from "./components/ShowSpendings";
+import { Alerts } from "./components/Alert";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         margin: 10,
       }}
     >
+      <Alerts />
       <Box>
         <ShowBalance />
       </Box>

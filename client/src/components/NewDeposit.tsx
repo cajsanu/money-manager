@@ -5,10 +5,13 @@ import { updateBalance } from "../requests/balance";
 import { BaseButton } from "./Button";
 import { NumberAmount } from "../utils";
 import { Box } from "@mui/system";
+import { useAppDispatch } from "../hooks";
+import { createAlert } from "../reducers/alertSlice";
 
 export const NewDeposit = () => {
   const queryClient = useQueryClient();
   const [amount, setAmount] = useState<string>("");
+  const dispatch = useAppDispatch();
 
   const newDepositMutation = useMutation({
     mutationFn: updateBalance,
@@ -29,6 +32,7 @@ export const NewDeposit = () => {
           amount: numberdAmount,
           action: "add",
         });
+        dispatch(createAlert({alert: `Successfully added ${numberdAmount} to your balance`, severity: "success"}))
       } else {
         window.alert(
           "Amount must be a valid number with no special characters"
