@@ -6,7 +6,7 @@ import { BaseButton } from "./Button";
 import { NumberAmount } from "../utils";
 import { Box } from "@mui/system";
 import { useAppDispatch } from "../hooks";
-import { createAlert } from "../reducers/alertSlice";
+import { timedAlert } from "../reducers/alertSlice";
 
 export const NewDeposit = () => {
   const queryClient = useQueryClient();
@@ -24,25 +24,43 @@ export const NewDeposit = () => {
 
     const numberdAmount = NumberAmount(amount);
 
-    if (
-      window.confirm(`Are you sure you want to add ${numberdAmount}€ to your balance?`)
-    ) {
-      if (numberdAmount && numberdAmount > 0) {
+    if (numberdAmount && !isNaN(numberdAmount)) {
+      if (
+        window.confirm(
+          `Are you sure you want to add ${numberdAmount}€ to your balance?`
+        )
+      ) {
         await newDepositMutation.mutateAsync({
           amount: numberdAmount,
           action: "add",
         });
-        dispatch(createAlert({alert: `Successfully added ${numberdAmount} to your balance`, severity: "success"}))
+        dispatch(
+          timedAlert({
+            message: `Successfully added ${numberdAmount} to your balance`,
+            severity: "success",
+          })
+        );
       } else {
-        window.alert(
-          "Amount must be a valid number with no special characters"
+        dispatch(
+          timedAlert({
+            message: "The was an error updating you balance",
+            severity: "error",
+          })
         );
       }
-      setAmount("");
+    } else {
+      dispatch(
+        timedAlert({
+          message: "The amount must be a valid number with no special characters",
+          severity: "error",
+        })
+      );
     }
+    setAmount("");
   };
+
   return (
-    <Box sx={{margin: 4}}>
+    <Box sx={{ margin: 4 }}>
       <Typography>Make a new deposit:</Typography>
       <form onSubmit={handleNewDeposit}>
         <TextField

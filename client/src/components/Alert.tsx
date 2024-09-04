@@ -3,12 +3,12 @@ import { Box } from "@mui/system";
 import { useAppSelector } from "../hooks";
 
 export const Alerts = () => {
-  const {alert, severity} = useAppSelector((state) => state.alert);
+  const {message, severity} = useAppSelector((state) => state.alert);
 
-  if (alert) {
+  if (message) {
     return (
       <Box>
-        <Alert severity={severity} >{alert}</Alert>
+        <Alert severity={severity} >{message}</Alert>
       </Box>
     );
   }
