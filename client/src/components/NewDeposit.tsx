@@ -74,6 +74,13 @@ export const NewDeposit = () => {
             borderRadius: "10px",
             backgroundColor: "#f5f5f5",
           }}
+          slotProps={{
+            input: {
+              style: {
+                color: 'black',
+              }
+            }
+          }}
         />
         <BaseButton text="Confirm" />
       </form>

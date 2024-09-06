@@ -73,13 +73,14 @@ export const AddSpending = () => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={spendingType}
-            label="Age"
+            label="Choose a category"
             required
             onChange={(e) => setSpendingType(e.target.value)}
+            sx={{color: "black"}}
           >
-            <MenuItem value={"groceries"}>Groceries</MenuItem>
-            <MenuItem value={"clothes"}>Clothes</MenuItem>
-            <MenuItem value={"other"}>Other</MenuItem>
+            <MenuItem sx={{color: "black"}} value={"groceries"}>Groceries</MenuItem>
+            <MenuItem sx={{color: "black"}} value={"clothes"}>Clothes</MenuItem>
+            <MenuItem sx={{color: "black"}} value={"other"}>Other</MenuItem>
           </Select>
         </FormControl>
         <form onSubmit={handleNewSpending}>
@@ -93,6 +94,14 @@ export const AddSpending = () => {
             sx={{
               borderRadius: "10px",
               backgroundColor: "#f5f5f5",
+              color: "black"
+            }}
+            slotProps={{
+              input: {
+                style: {
+                  color: 'black',
+                }
+              }
             }}
           />
           <BaseButton text="Add" />
